@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Договора{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Договора</h2>
+    
+    <!-- Результаты -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Список договоров</h5>
+        </div>
+        <div class="card-body p-0">
+            {% if contracts %}
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Предмет договора</th>
+                            <th>Код организации</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contract in contracts %}
+                        <tr>
+                            <td>{{ contract.subject }}</td>
+                            <td>{{ contract.org_code }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <h5 class="text-muted">Договора не найдены</h5>
+                <p class="text-muted">Для вашей организации нет договоров</p>
+            </div>
+            {% endif %}
+        </div>
+        {% if contracts %}
+        <div class="card-footer text-muted">
+            <i class="fas fa-file-contract"></i> Найдено договоров: {{ contracts|length }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
