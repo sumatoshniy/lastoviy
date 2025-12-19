@@ -1,0 +1,66 @@
+/* Page */
+.page {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+}
+
+/* HEADER */
+.header__img{
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+}
+.footer__img{
+    height: 50px;
+    width: auto;
+    max-width: 150px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header__img {
+        height: 40px;
+        max-width: 150px;
+    }
+
+    .footer__img {
+        height: 40px;
+        max-width: 120px;
+    }
+
+    .text-end .form-control {
+        width: 90px !important;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.5rem !important;
+        font-size: 0.9rem;
+    }
+}
+
+/* Карточки */
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #dee2e6;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Таблицы */
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}

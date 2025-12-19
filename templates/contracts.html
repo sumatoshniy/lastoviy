@@ -6,10 +6,43 @@
 <div class="container mt-4">
     <h2 class="mb-4">Договора</h2>
     
+    <!-- Форма для выбора периода -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Фильтр по дате регистрации договора</h5>
+            <p class="text-muted">Выберите период, за который хотите посмотреть договора</p>
+            <form method="GET" action="{{ url_for('contracts') }}">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <label for="start_date" class="form-label">Дата с:</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date"
+                               value="{{ dates.start_date_input }}" required>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="end_date" class="form-label">Дата по:</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date"
+                               value="{{ dates.end_date_input }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary me-2">
+                            Показать договора
+                        </button>
+                        <a href="{{ url_for('contracts') }}" class="btn btn-outline-secondary">
+                            Сбросить
+                        </a>
+                        <div class="mt-2 text-muted">
+                            <small>Период: {{ dates.start_date }} - {{ dates.end_date }}</small>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Результаты -->
-    <div class="card shadow-sm">
+    <div class="card">
         <div class="card-header bg-light">
-            <h5 class="mb-0">Список договоров</h5>
+            <h5 class="mb-0">Договора за период с {{ dates.start_date }} по {{ dates.end_date }}</h5>
         </div>
         <div class="card-body p-0">
             {% if contracts %}
@@ -17,15 +50,21 @@
                 <table class="table table-hover mb-0">
                     <thead class="table-light">
                         <tr>
+                            <th>№ договора</th>
+                            <th>Дата регистрации</th>
+                            <th>Период действия</th>
+                            <th>Вид договора</th>
                             <th>Предмет договора</th>
-                            <th>Код организации</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for contract in contracts %}
                         <tr>
-                            <td>{{ contract.subject }}</td>
-                            <td>{{ contract.org_code }}</td>
+                            <td><strong>{{ contract.num_dog }}</strong></td>
+                            <td>{{ contract.data_reg }}</td>
+                            <td>{{ contract.period }}</td>
+                            <td>{{ contract.vid_dog }}</td>
+                            <td>{{ contract.predmet }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -34,13 +73,13 @@
             {% else %}
             <div class="text-center py-5">
                 <h5 class="text-muted">Договора не найдены</h5>
-                <p class="text-muted">Для вашей организации нет договоров</p>
+                <p class="text-muted">Попробуйте изменить период поиска</p>
             </div>
             {% endif %}
         </div>
         {% if contracts %}
         <div class="card-footer text-muted">
-            <i class="fas fa-file-contract"></i> Найдено договоров: {{ contracts|length }}
+            Найдено договоров: {{ contracts|length }}
         </div>
         {% endif %}
     </div>
