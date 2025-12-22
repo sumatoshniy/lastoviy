@@ -35,15 +35,15 @@
                 </div>
                 {% else %}
                 <!-- Форма входа -->
-                <form action="{{ url_for('login') }}" method="POST" class="mt-1">
-                    <div class="d-flex">
-                        <input type="text" name="username" class="form-control form-control-sm me-1"
-                               placeholder="Email" required style="width: 120px;">
-                        <input type="password" name="password" class="form-control form-control-sm me-1"
-                               placeholder="Пароль" required style="width: 120px;">
-                        <button type="submit" class="btn btn-outline-primary btn-sm">Войти</button>
-                    </div>
-                </form>
+               <form action="{{ url_for('login') }}" method="POST" class="mt-1">
+    <div class="d-flex">
+        <input type="text" name="username" class="form-control form-control-sm me-1"
+               placeholder="Логин" required style="width: 100px;">
+        <input type="password" name="password" class="form-control form-control-sm me-1"
+               placeholder="Пароль" required style="width: 100px;">
+        <button type="submit" class="btn btn-outline-primary btn-sm">Войти</button>
+    </div>
+</form>
                 {% endif %}
             </div>
         </header>

@@ -1,42 +1,28 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
 
 {% block content %}
-<div class="text-center py-5">
-    {% if not current_user.is_authenticated %}
-        <h2>Личный кабинет контрагента АО БМК</h2>
-        <p class="lead mt-4">Для доступа к личному кабинету необходимо авторизоваться</p>
-        <div class="mt-5">
-            <div class="card mx-auto" style="max-width: 400px;">
-                <div class="card-body">
-                    <h5 class="card-title">Форма входа</h5>
-                    <form action="{{ url_for('login') }}" method="POST">
-                        <div class="mb-3">
-                            <input type="text" name="username" class="form-control"
-                                   placeholder="Введите логин (email)" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="password" name="password" class="form-control"
-                                   placeholder="Введите пароль" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Войти</button>
-                    </form>
-                </div>
-            </div>
+<!-- Можно оставить пустым или добавить приветствие -->
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body text-center">
+            <h3>Личный кабинет контрагента АО БМК</h3>
+            <p class="text-muted">Для доступа к функциям личного кабинета войдите в систему</p>
+            
+            {% if not current_user.is_authenticated %}
             <div class="mt-4">
-                <a href="{{ url_for('test_db') }}" class="btn btn-outline-info">Проверить подключение к БД</a>
+                <p>Используйте форму входа в правом верхнем углу</p>
             </div>
+            {% else %}
+            <div class="mt-4">
+                <p>Вы уже вошли в систему как <strong>{{ current_user.email }}</strong></p>
+                <a href="{{ url_for('profile') }}" class="btn btn-primary">Перейти в личный кабинет</a>
+            </div>
+            {% endif %}
         </div>
-    {% else %}
-        <h2>Добро пожаловать, {{ current_user.username }}!</h2>
-        <p class="lead mt-4">Вы успешно авторизовались в системе</p>
-        <div class="mt-5">
-            <a href="{{ url_for('profile') }}" class="btn btn-primary btn-lg me-3">
-                <i class="fas fa-user"></i> Личный кабинет
-            </a>
-            <a href="{{ url_for('contracts') }}" class="btn btn-success btn-lg">
-                <i class="fas fa-file-contract"></i> Договора
-            </a>
-        </div>
-    {% endif %}
+    </div>
 </div>
 {% endblock %}
