@@ -18,13 +18,13 @@ header {
 .header__img {
     height: 65px;
     width: auto;
-    max-width: 320px;
+    max-width: 350px;
 }
 
 .footer__img {
-    height: 50px;
+    height: 60px;
     width: auto;
-    max-width: 150px;
+    max-width: 250px;
 }
 
 /* ФУТЕР */

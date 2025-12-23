@@ -320,7 +320,7 @@ def contracts():
                 'predmet': name or ''
             })
 
-        # Подготавливаем данные для отображения
+        # Данные для отображения
         if show_all:
             date_display = {
                 'start_date': start_date.strftime('%d.%m.%Y') if hasattr(start_date, 'strftime') else '—',
