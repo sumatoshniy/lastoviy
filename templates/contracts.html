@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-4">
     <h2 class="mb-4">Договора</h2>
-    
+
     <!-- Форма для выбора периода -->
     <div class="card mb-4">
         <div class="card-body">
@@ -29,33 +29,34 @@
                         <input type="date" class="form-control" id="end_date" name="end_date"
                                value="{{ dates.end_date_input }}" {% if dates.show_all %}disabled{% endif %}>
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary w-100" {% if dates.show_all %}disabled{% endif %}>
-                            Показать
-                        </button>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="{{ url_for('contracts') }}?show_all=true" class="btn btn-success w-100">
+                    <div class="col-md-6">
+                        <!-- Период над кнопками -->
+                        <div class="mb-2">
                             {% if dates.show_all %}
-                            Показаны все
+                            <small class="text-muted">Показаны все договора</small>
                             {% else %}
-                            Показать все
+                            <small class="text-muted">Период: {{ dates.start_date }} - {{ dates.end_date }}</small>
                             {% endif %}
-                        </a>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="{{ url_for('contracts') }}" class="btn btn-outline-secondary w-100">
-                            Сбросить
-                        </a>
-                    </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        {% if dates.show_all %}
-                        <small class="text-muted">Показаны все договора</small>
-                        {% else %}
-                        <small class="text-muted">Период: {{ dates.start_date }} - {{ dates.end_date }}</small>
-                        {% endif %}
+                        </div>
+
+                        <!-- Кнопки -->
+                        <div class="d-flex gap-2">
+                            {% if not dates.show_all %}
+                            <button type="submit" class="btn btn-primary">
+                                Показать договора
+                            </button>
+                            {% endif %}
+                            <a href="{{ url_for('contracts') }}?show_all=true" class="btn btn-success">
+                                {% if dates.show_all %}
+                                Показаны все
+                                {% else %}
+                                Показать все договора
+                                {% endif %}
+                            </a>
+                            <a href="{{ url_for('contracts') }}" class="btn btn-outline-secondary">
+                                Сбросить
+                            </a>
+                        </div>
                     </div>
                 </div>
             </form>
